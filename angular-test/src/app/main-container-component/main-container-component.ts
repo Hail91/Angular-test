@@ -1,25 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../API/api.service';
 
-interface article {
-  title: string;
-}
+import { article } from './interfaces/index';
+
 @Component({
   selector: 'app-main-container-component',
   templateUrl: './main-container-component.html',
   styleUrls: ['./main-container-component.css'],
+  providers: [ApiService],
 })
 export class MainContainerComponent implements OnInit {
-  constructor(ApiService: ApiService) {}
+  constructor(private dataService: ApiService) {}
 
   articles: Array<article> = [];
+  baseUrl: string = 'https://dev.to/api/articles';
 
   ngOnInit(): void {
     // Make call with ApiService client and fetch and return some data
-    console.log(this.articles);
+    this.fetchNewsArticles();
+    console.log(this);
   }
 
-  fetchNewsArticles(): Array<article> {
-    return [];
+  fetchNewsArticles() {
+    this.dataService.getArticles(this.baseUrl).subscribe((data) => {
+      this.articles = data;
+    });
   }
 }
