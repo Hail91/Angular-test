@@ -16,9 +16,7 @@ export class MainContainerComponent implements OnInit {
   baseUrl: string = 'https://dev.to/api/articles';
 
   ngOnInit(): void {
-    // Make call with ApiService client and fetch and return some data
     this.fetchNewsArticles();
-    console.log(this);
   }
 
   fetchNewsArticles() {

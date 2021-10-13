@@ -8,7 +8,15 @@ import { article } from '../main-container-component/interfaces/index';
 })
 export class ArticleCardComponent implements OnInit {
   @Input() article!: article;
+
   constructor() {}
 
+  // Define some local state to handle whether stats modal should be displayed
+  statsModalOpen: boolean = false;
+
   ngOnInit(): void {}
+
+  toggleStatsModal(): void {
+    this.statsModalOpen = !this.statsModalOpen;
+  }
 }
