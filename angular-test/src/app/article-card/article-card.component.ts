@@ -11,7 +11,6 @@ export class ArticleCardComponent implements OnInit {
 
   constructor() {}
 
-  // Define some local state to handle whether stats modal should be displayed
   statsModalOpen: boolean = false;
 
   ngOnInit(): void {}

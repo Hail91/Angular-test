@@ -1,5 +1,4 @@
 <article class="overflow-hidden rounded-lg shadow-lg">
-  <!-- Modal to be triggered -->
   <app-article-statistics-modal
     [article]="article"
     [statsModalOpen]="statsModalOpen"
@@ -57,7 +56,6 @@
       />
       <p class="ml-2 text-sm">{{ article.user.name }}</p>
     </a>
-    <!-- Button to trigger modal that displays post specific stats -->
     <button
       (click)="toggleStatsModal()"
       type="button"
@@ -81,7 +79,6 @@
     >
       View post statistics
     </button>
-    <!-- end -->
     <div>
       <a
         href="https://github.com/{{ article.user.github_username }}"

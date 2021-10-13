@@ -18,38 +18,15 @@
       sm:block sm:p-0
     "
   >
-    <!--
-        Background overlay, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
       aria-hidden="true"
     ></div>
-
-    <!-- This element is to trick the browser into centering the modal contents. -->
     <span
       class="hidden sm:inline-block sm:align-middle sm:h-screen"
       aria-hidden="true"
       >&#8203;</span
     >
-
-    <!--
-        Modal panel, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
     <div
       class="
         inline-block
@@ -68,76 +45,152 @@
       "
     >
       <div>
-        <div
-          class="
-            mx-auto
-            flex
-            items-center
-            justify-center
-            h-12
-            w-12
-            rounded-full
-            bg-green-100
-          "
-        >
-          <!-- Heroicon name: outline/check -->
-          <svg
-            class="h-6 w-6 text-green-600"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
+        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-1 lg:grid-cols-1">
+          <div
+            class="
+              relative
+              bg-white
+              pt-5
+              px-4
+              pb-12
+              sm:pt-6 sm:px-6
+              shadow
+              rounded-lg
+              overflow-hidden
+            "
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <div class="mt-3 text-center sm:mt-5">
-          <h3
-            class="text-lg leading-6 font-medium text-gray-900"
-            id="modal-title"
-          >
-            Payment successful
-          </h3>
-          <div class="mt-2">
-            <p class="text-sm text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur amet labore.
-            </p>
+            <dt>
+              <div class="absolute bg-green-400 rounded-md p-3">
+                <!-- Heroicon name: outline/users -->
+                <svg
+                  class="h-6 w-6 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <p class="ml-16 text-sm font-medium text-gray-500 truncate">
+                Total Comments
+              </p>
+            </dt>
+            <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
+              <p class="text-2xl font-semibold text-gray-900">
+                {{ article.comments_count }}
+              </p>
+              <div
+                class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6"
+              >
+                <div class="text-sm">
+                  <a
+                    href="{{ article.url }}/comments"
+                    target="_"
+                    class="
+                      font-medium
+                      text-black
+                      hover:text-green-400
+                      transition-all
+                      ease-in-out
+                    "
+                  >
+                    View all<span class="sr-only">
+                      Total Comments Statistics</span
+                    ></a
+                  >
+                </div>
+              </div>
+            </dd>
           </div>
+
+          <div
+            class="
+              relative
+              bg-white
+              pt-5
+              px-4
+              sm:pt-6 sm:px-6
+              shadow
+              rounded-lg
+              overflow-hidden
+            "
+          >
+            <dt>
+              <div class="absolute bg-green-400 rounded-md p-3">
+                <i class="far fa-thumbs-up fa-2x text-white"></i>
+              </div>
+              <p class="ml-16 text-sm font-medium text-gray-500 truncate">
+                Number of likes
+              </p>
+            </dt>
+            <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
+              <p class="text-2xl font-semibold text-gray-900">
+                {{ article.positive_reactions_count }}
+              </p>
+            </dd>
+          </div>
+
+          <div
+            class="
+              relative
+              bg-white
+              pt-5
+              px-4
+              sm:pt-6 sm:px-6
+              shadow
+              rounded-lg
+              overflow-hidden
+            "
+          >
+            <dt>
+              <div class="absolute bg-green-400 rounded-md p-3">
+                <i class="fas fa-book-open fa-2x text-white"></i>
+              </div>
+              <p class="ml-16 text-sm font-medium text-gray-500 truncate">
+                Estimated reading time
+              </p>
+            </dt>
+            <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
+              <p class="text-2xl font-semibold text-gray-900">
+                {{ article.reading_time_minutes }} minute(s)
+              </p>
+            </dd>
+          </div>
+        </dl>
+        <div class="mt-5 sm:mt-6">
+          <button
+            (click)="triggerCloseModal()"
+            type="button"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              rounded-md
+              border border-transparent
+              shadow-sm
+              px-4
+              py-2
+              bg-green-400
+              text-base
+              font-medium
+              text-white
+              hover:bg-green-500
+              focus:outline-none
+              sm:text-sm
+              transition-all
+              ease-in-out
+            "
+          >
+            Go Back
+          </button>
         </div>
-      </div>
-      <div class="mt-5 sm:mt-6">
-        <button
-          (click)="triggerCloseModal()"
-          type="button"
-          class="
-            inline-flex
-            justify-center
-            w-full
-            rounded-md
-            border border-transparent
-            shadow-sm
-            px-4
-            py-2
-            bg-green-400
-            text-base
-            font-medium
-            text-white
-            hover:bg-green-500
-            focus:outline-none
-            sm:text-sm
-            transition-all
-            ease-in-out
-          "
-        >
-          Go Back
-        </button>
       </div>
     </div>
   </div>
